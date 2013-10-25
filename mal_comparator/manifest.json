@@ -1,0 +1,20 @@
+{
+	"name": "My Anime List Comparator",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "Should compare 2 anime watched lists for similarities.",
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+	"content_scripts": [],
+	"permissions": [
+		"http://myanimelist.net/animelist/*",
+		"storage",
+		"tabs"
+	]
+}
