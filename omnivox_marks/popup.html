@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Omnivow Marks Viewer</title>
+    <style>
+    .error {
+        color: red;
+    }
+    .form {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <img src="images/ajax-loader.gif">
+    </div>
+    <form class="form">
+        <p>
+            <label for="uname">Username:</label>
+            <br>
+            <input type="text" id="txtUname">
+        </p>
+        <p>
+            <label for="pword">Password:</label>
+            <br>
+            <input type="password" id="txtPword">
+        </p>
+        <p>
+            <button id="btnShowMarks" type="submit">Show Marks</button>
+        </p>
+        <p class="error"></p>
+    </form>
+    <script src="js/jquery2.js"></script>
+    <script src="js/popup.js"></script>
+</body>
+</html>
