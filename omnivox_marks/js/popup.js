@@ -67,12 +67,13 @@ function loadMarks(username, password) {
             // setup postdata using passed uname and pword combo
             var postData = "TypeIdentification=Etudiant&NoDA=" + username + "&PasswordEtu=" + password + "&k=" + form.find('[name=k]').val();
             // log user in by posting data
-            logIn(form.attr('method'), form.attr('action'), postData);
+            logIn(form.attr('method'), form.attr('action'), postData, username);
+
         }
     });
 }
 
-function logIn(method, action, postData) {
+function logIn(method, action, postData, username) {
     $.ajax({
         method: method,
         url: loginPageBase + action,
