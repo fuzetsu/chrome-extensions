@@ -1,7 +1,7 @@
 var baseUrl = "https://cegep-heritage.omnivox.ca/",
     marksPageUrl = baseUrl + "intr/Module/ServicesExterne/Skytech.aspx?IdServiceSkytech=Skytech_Omnivox&lk=%2festd%2fcvie%3fmodule%3dnote%26item%3dintro",
     // the number of minutes to wait between each check for new marks
-    minutesToWait = 1;
+    minutesToWait = 15;
 
 // initial call
 setNumNewMarks();
@@ -28,26 +28,38 @@ function checkLoggedIn(callback) {
 }
 
 function setNumNewMarks() {
-    console.log('checking marks!!!');
+    console.log('checking marks. ' + new Date().toString());
+    setBadge({
+        bg: '#999',
+        text: '...'
+    });
     getNumNewMarks({
         success: function(num) {
             console.log(num + ' was received!!');
-            chrome.browserAction.setBadgeBackgroundColor({
-                color: '#F00'
-            });
-            chrome.browserAction.setBadgeText({
+            setBadge({
+                bg: '#F00',
                 text: num
             });
         },
         fail: function() {
             console.log('check failed!!!');
-            chrome.browserAction.setBadgeBackgroundColor({
-                color: '#FFFF00'
-            });
-            chrome.browserAction.setBadgeText({
+            setBadge({
+                bg: '#FFFF00',
                 text: 'x'
             });
         }
+    });
+}
+
+function setBadge(opt) {
+    opt.bg && chrome.browserAction.setBadgeBackgroundColor({
+        color: opt.bg
+    });
+    opt.text && chrome.browserAction.setBadgeText({
+        text: opt.text
+    });
+    opt.color && chrome.browserAction.setBadgeTextColor({
+        color: opt.color || '#FFF'
     });
 }
 
@@ -59,7 +71,7 @@ function getNumNewMarks(callbacks) {
                 console.log('got marks page');
                 var match = data.match(/<img src="\/images\/General\/TagNouveau.gif">/);
                 // if there are any matches then pass that, otherwise pass 0
-                callbacks.success((match) ? match.length : 0);
+                callbacks.success(((match) ? match.length + "" : 0) + "");
             }).fail(function() {
                 callbacks.fail();
             });

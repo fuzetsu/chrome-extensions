@@ -13,6 +13,7 @@
         "default_popup": "popup.html"
     },
     "permissions": [
+        "https://www-c35.omnivox.ca/*",
         "https://cegep-heritage.omnivox.ca/*",
         "tabs",
         "cookies",
