@@ -69,7 +69,7 @@ function getNumNewMarks(callbacks) {
             console.log('you are logged in, getting marks page...');
             $.get(marksPageUrl, function(data) {
                 console.log('got marks page');
-                var match = data.match(/<img src="\/images\/General\/TagNouveau.gif">/);
+                var match = data.match(/<IMG SRC="\/images\/General\/TagNouveau.gif"/);
                 // if there are any matches then pass that, otherwise pass 0
                 callbacks.success(((match) ? match.length + "" : 0) + "");
             }).fail(function() {
