@@ -30,21 +30,21 @@ function checkLoggedIn(callback) {
 function setNumNewMarks() {
     console.log('checking marks. ' + new Date().toString());
     setBadge({
-        bg: '#999',
+        color: '#999',
         text: '...'
     });
     getNumNewMarks({
         success: function(num) {
-            console.log(num + ' was received!!');
+            console.log(num + ' was received.');
             setBadge({
-                bg: '#F00',
+                color: '#F00',
                 text: num
             });
         },
         fail: function() {
-            console.log('check failed!!!');
+            console.log('check failed.');
             setBadge({
-                bg: '#FFFF00',
+                color: '#FFFF00',
                 text: 'x'
             });
         }
@@ -52,14 +52,11 @@ function setNumNewMarks() {
 }
 
 function setBadge(opt) {
-    opt.bg && chrome.browserAction.setBadgeBackgroundColor({
-        color: opt.bg
-    });
-    opt.text && chrome.browserAction.setBadgeText({
+    (typeof opt.text == 'string') && chrome.browserAction.setBadgeText({
         text: opt.text
     });
-    opt.color && chrome.browserAction.setBadgeTextColor({
-        color: opt.color || '#FFF'
+    opt.color && chrome.browserAction.setBadgeBackgroundColor({
+        color: opt.color
     });
 }
 
@@ -70,8 +67,8 @@ function getNumNewMarks(callbacks) {
             $.get(marksPageUrl, function(data) {
                 console.log('got marks page');
                 var match = data.match(/<img src="\/images\/General\/TagNouveau.gif"/gi);
-                // if there are any matches then pass that, otherwise pass 0
-                callbacks.success(((match) ? match.length : 0) + "");
+                // if there are any matches then pass that, otherwise pass empty str (to hide badge)
+                callbacks.success(((match) ? match.length : '') + "");
             }).fail(function() {
                 callbacks.fail();
             });
