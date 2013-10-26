@@ -6,7 +6,8 @@ var username = localStorage.username,
     errorField = $('p.error'),
     baseUrl = "https://cegep-heritage.omnivox.ca/",
     marksPageUrl = baseUrl + "intr/Module/ServicesExterne/Skytech.aspx?IdServiceSkytech=Skytech_Omnivox&lk=%2festd%2fcvie%3fmodule%3dnote%26item%3dintro",
-    loginPageBase = baseUrl + "intr/Module/Identification/Login/";
+    loginPageBase = baseUrl + "intr/Module/Identification/Login/",
+    checkLoggedIn = chrome.extension.getBackgroundPage().checkLoggedIn;
 
 // check if logged in
 checkLoggedIn(function(isLoggedIn) {
@@ -15,6 +16,8 @@ checkLoggedIn(function(isLoggedIn) {
         chrome.tabs.create({
             url: marksPageUrl
         });
+        // close the popup
+        window.close();
     } else {
         // not logged in so: hide the loading image
         $('.loading').hide();
@@ -94,17 +97,8 @@ function logIn(method, action, postData, username) {
                 name: "IsSessionInitialise",
                 value: "True"
             });
-        }
-    });
-}
-
-function checkLoggedIn(callback) {
-    $.get(baseUrl, function(data) {
-        // if we are logged in
-        if (data.indexOf('Calendar of Events') != -1) {
-            callback(true);
-        } else {
-            callback(false);
+            // close the popup
+            window.close();
         }
     });
 }
