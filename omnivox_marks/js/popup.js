@@ -14,6 +14,8 @@ var username = localStorage.username,
 // check if logged in
 checkLoggedIn(function(isLoggedIn) {
     if (isLoggedIn) {
+        // update the marks
+        updateMarks();
         // open marks page
         chrome.tabs.create({
             url: marksPageUrl
