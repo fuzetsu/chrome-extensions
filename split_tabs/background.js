@@ -1,5 +1,6 @@
 chrome.browserAction.onClicked.addListener(function(tab) {
     chrome.windows.get(tab.windowId, {populate: true}, function(win) {
+        if(tab.index === 0) return;
         var tabs = win.tabs.slice(tab.index);
         // get tab ids for tabs including and after current one
         var tabsToMove = tabs.map(function(tab) {
