@@ -1,0 +1,22 @@
+{
+  "name": "Move Window",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Move windows between desktops",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "commands": {
+    "move_to_monitor": {
+        "suggested_keys": {
+            "default": "Ctrl+Shift+M"
+        },
+        "description": "Move window to next monitor",
+        "global": true
+    }
+  },
+  "permissions": [
+    "tabs", "system.display"
+  ]
+}
