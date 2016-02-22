@@ -9,11 +9,11 @@
   },
   "commands": {
     "move_to_monitor": {
-        "suggested_keys": {
-            "default": "Ctrl+Shift+M"
-        },
-        "description": "Move window to next monitor",
-        "global": true
+      "suggested_keys": {
+        "default": "Ctrl+Shift+M"
+      },
+      "description": "Move window to next monitor",
+      "global": true
     }
   },
   "permissions": [

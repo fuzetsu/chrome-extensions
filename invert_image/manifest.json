@@ -1,17 +1,17 @@
 {
-    "name": "Invert Images",
-    "version": "1.0",
-    "manifest_version": 2,
-    "description": "Invert all images on screen",
-    "browser_action": {
-        "default_icon": "images/icon.png"
-    },
-    "background": {
-        "scripts": ["background.js"],
-        "persistent": false
-    },
-    "permissions": [
-        "tabs",
-        "<all_urls>"
-    ]
+  "name": "Invert Images",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Invert all images on screen",
+  "browser_action": {
+    "default_icon": "images/icon.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "tabs",
+    "<all_urls>"
+  ]
 }

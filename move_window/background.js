@@ -23,9 +23,9 @@ var getWinOffset = function(win, monitor) {
 
 var nextMonitorIndex = function(index, length, inc) {
   index += inc;
-  if(index >= length) {
+  if (index >= length) {
     index = 0;
-  } else if(index < 0) {
+  } else if (index < 0) {
     index = length - 1;
   }
   return index;

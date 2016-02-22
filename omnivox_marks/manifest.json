@@ -1,22 +1,22 @@
 {
-    "name": "Omnivox Mark Viewer",
-    "version": "1.0",
-    "manifest_version": 2,
-    "description": "Dont' worry about it",
-    "background": {
-        "scripts": ["js/jquery2.js", "js/background.js"],
-        "persistent": false
-    },
-    "browser_action": {
-        "default_icon": "images/icon.png",
-        "default_title": "Omnivox Mark Viewer",
-        "default_popup": "popup.html"
-    },
-    "permissions": [
-        "https://www-c35.omnivox.ca/*",
-        "https://cegep-heritage.omnivox.ca/*",
-        "tabs",
-        "cookies",
-        "alarms"
-    ]
+  "name": "Omnivox Mark Viewer",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Dont' worry about it",
+  "background": {
+    "scripts": ["js/jquery2.js", "js/background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_title": "Omnivox Mark Viewer",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "https://www-c35.omnivox.ca/*",
+    "https://cegep-heritage.omnivox.ca/*",
+    "tabs",
+    "cookies",
+    "alarms"
+  ]
 }

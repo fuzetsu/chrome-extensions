@@ -1,75 +1,83 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>My Anime List Comparator</title>
-    <script src="js/jquery.js"></script>
-    <style>
-    body, input {
-        font-family: Calibri, century-gothic, Sans-Serif;
-    }
-
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    div.input {
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    tr:hover > td {
-        color: hotpink;
-        background: pink;
-    }
-
-    .resultTable {
-        border-collapse: collapse;
-        margin: auto;
-    }
-
-    .resultTable > thead, .resultTable > tbody > tr {
-        border-bottom: 2px solid #6678B1;
-    }
-
-    .resultTable th {
-        font-weight: normal;
-        color: #039;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .resultTable td:nth-child(2) {
-        text-align: right;
-    }
-
-    .resultTable td {
-        padding: 5px 10px 5px 10px;
-        color: #669;
-    }
-
-    .resultTable tr:last-child {
-        font-weight: bold;
-    }
-    </style>
+  <title>My Anime List Comparator</title>
+  <script src="js/jquery.js"></script>
+  <style>
+  body,
+  input {
+    font-family: Calibri, century-gothic, Sans-Serif;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  div.input {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  tr:hover > td {
+    color: hotpink;
+    background: pink;
+  }
+  
+  .resultTable {
+    border-collapse: collapse;
+    margin: auto;
+  }
+  
+  .resultTable > thead,
+  .resultTable > tbody > tr {
+    border-bottom: 2px solid #6678B1;
+  }
+  
+  .resultTable th {
+    font-weight: normal;
+    color: #039;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .resultTable td:nth-child(2) {
+    text-align: right;
+  }
+  
+  .resultTable td {
+    padding: 5px 10px 5px 10px;
+    color: #669;
+  }
+  
+  .resultTable tr:last-child {
+    font-weight: bold;
+  }
+  </style>
 </head>
+
 <body>
-    <div class="input">
-        <button class='fullscreen'>[+]</button>
-        <select id="media">
-            <option value="anime" selected>Anime</option>
-            <option value="manga">Manga</option>
-        </select>
-        <label>User 1: </label><input id='user1' type="text" />
-        <label>User 2: </label><input id='user2' type="text" />
-        <input type="checkbox" id="choosePlanned" /><label>plan to</label>
-        <button class="search">go</button>
-    </div>
-    <div class="results"></div>
-    <script src="js/popup.js"></script>
+  <div class="input">
+    <button class='fullscreen'>[+]</button>
+    <select id="media">
+      <option value="anime" selected>Anime</option>
+      <option value="manga">Manga</option>
+    </select>
+    <label>User 1: </label>
+    <input id='user1' type="text" />
+    <label>User 2: </label>
+    <input id='user2' type="text" />
+    <input type="checkbox" id="choosePlanned" />
+    <label>plan to</label>
+    <button class="search">go</button>
+  </div>
+  <div class="results"></div>
+  <script src="js/popup.js"></script>
 </body>
+
 </html>

@@ -1,16 +1,16 @@
 {
-    "name": "Split Tabs",
-    "version": "1.0",
-    "manifest_version": 2,
-    "description": "Splits tabs from current one to end into separate window",
-    "browser_action": {
-        "default_icon": "images/icon.png"
-    },
-    "background": {
-        "scripts": ["background.js"],
-        "persistent": false
-    },
-    "permissions": [
-        "tabs"
-    ]
+  "name": "Split Tabs",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Splits tabs from current one to end into separate window",
+  "browser_action": {
+    "default_icon": "images/icon.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "tabs"
+  ]
 }
