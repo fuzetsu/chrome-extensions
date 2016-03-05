@@ -52,13 +52,12 @@ chrome.commands.onCommand.addListener(function(command) {
             return true;
           }
         });
-        chrome.windows.update(curWin.id, { state: 'normal' }, function() {
-          chrome.windows.update(curWin.id, {
-            left: nextMonitor.left + offset.left,
-            top: nextMonitor.top + offset.top
-          }, function() {
-            chrome.windows.update(curWin.id, { state: origState });
-          });
+        chrome.windows.update(curWin.id, {
+          state: 'normal',
+          left: nextMonitor.left + offset.left,
+          top: nextMonitor.top + offset.top
+        }, function() {
+          chrome.windows.update(curWin.id, { state: origState });
         });
       });
     }
