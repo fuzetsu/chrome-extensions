@@ -43,6 +43,7 @@ chrome.commands.onCommand.addListener(function(command) {
       var inc = 1;
       chrome.windows.getCurrent(function(curWin) {
         var nextMonitor, curMonitor, offset;
+        var origState = curWin.state;
         monitors.some(function(monitor, index) {
           if (isWindowInMonitor(curWin, monitor)) {
             curMonitor = monitor;
@@ -51,7 +52,14 @@ chrome.commands.onCommand.addListener(function(command) {
             return true;
           }
         });
-        chrome.windows.update(curWin.id, { left: nextMonitor.left + offset.left, top: nextMonitor.top + offset.top });
+        chrome.windows.update(curWin.id, { state: 'normal' }, function() {
+          chrome.windows.update(curWin.id, {
+            left: nextMonitor.left + offset.left,
+            top: nextMonitor.top + offset.top
+          }, function() {
+            chrome.windows.update(curWin.id, { state: origState });
+          });
+        });
       });
     }
   }
