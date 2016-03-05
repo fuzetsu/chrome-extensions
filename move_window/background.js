@@ -21,14 +21,32 @@ var getWinOffset = function(win, monitor) {
   return { top: win.top - monitor.top, left: win.left - monitor.left };
 };
 
-var nextMonitorIndex = function(index, length, inc) {
-  index += inc;
+var nextMonitorIndex = function(index, length) {
+  index += 1;
   if (index >= length) {
     index = 0;
   } else if (index < 0) {
     index = length - 1;
   }
   return index;
+};
+
+var getNextMonitorOffset = function(win) {
+  var curMonitor, nextMonitor, winOffset;
+  monitors.some(function(monitor, index) {
+    if (isWindowInMonitor(win, monitor)) {
+      curMonitor = monitor;
+      nextMonitor = monitors[nextMonitorIndex(index, monitors.length)];
+      winOffset = getWinOffset(win, curMonitor);
+      return true;
+    }
+  });
+  return {
+    monitor: nextMonitor,
+    window: winOffset,
+    top: nextMonitor.top + winOffset.top,
+    left: nextMonitor.left + winOffset.left
+  };
 };
 
 updateMonitorInfo();
@@ -40,24 +58,17 @@ chrome.system.display.onDisplayChanged.addListener(function() {
 chrome.commands.onCommand.addListener(function(command) {
   if (command === 'move_to_monitor') {
     if (monitors) {
-      var inc = 1;
       chrome.windows.getCurrent(function(curWin) {
-        var nextMonitor, curMonitor, offset;
         var origState = curWin.state;
-        monitors.some(function(monitor, index) {
-          if (isWindowInMonitor(curWin, monitor)) {
-            curMonitor = monitor;
-            nextMonitor = monitors[nextMonitorIndex(index, monitors.length, inc)];
-            offset = getWinOffset(curWin, curMonitor);
-            return true;
-          }
-        });
-        chrome.windows.update(curWin.id, {
-          state: 'normal',
-          left: nextMonitor.left + offset.left,
-          top: nextMonitor.top + offset.top
-        }, function() {
-          chrome.windows.update(curWin.id, { state: origState });
+        // set state to 'normal' to preserve offset
+        chrome.windows.update(curWin.id, { state: 'normal' }, function(normalWin) {
+          // calculate offset and next monitor
+          var offset = getNextMonitorOffset(normalWin);
+          // apply new offset based on destination monitor
+          chrome.windows.update(normalWin.id, { top: offset.top, left: offset.left }, function() {
+            // restore window state
+            chrome.windows.update(normalWin.id, { state: origState });
+          });
         });
       });
     }
