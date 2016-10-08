@@ -9,7 +9,7 @@
   },
   "commands": {
     "move_to_monitor": {
-      "suggested_keys": {
+      "suggested_key": {
         "default": "Ctrl+Shift+M"
       },
       "description": "Move window to next monitor",
